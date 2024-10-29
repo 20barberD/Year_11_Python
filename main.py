@@ -29,6 +29,5 @@
 
 import importlib
 
-inputFile = input("Enter the name of the python fike you want to run: ")
+inputFile = input("Enter the name of the python file you want to run: ")
 file = importlib.import_module(inputFile)
-file.main()

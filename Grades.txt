@@ -1,0 +1,3 @@
+Dylan::80
+Real Student::120000
+Bob::1
