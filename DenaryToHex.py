@@ -11,4 +11,4 @@ def denaryToHex(denary):
         hex += hexChar((denary // (16 ** x)) % 16)
     return hex
 
-print(denaryToHex(256))
+print(denaryToHex(int(input("Enter in a denary number: "))))
