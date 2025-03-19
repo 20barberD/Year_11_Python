@@ -1,4 +1,14 @@
 #Task 3
+def generateEmptyGrid(length, height):
+    grid = []
+    length = 0
+    for x in range(length):
+        grid.append([])
+        for y in range(height):
+            grid[-1].append("X")
+            length += 1
+    return grid, length
+
 def convertColumnInput(letter: str):
     letters = ["a", "b", "c", "d", "e", "f", "g"]
     lowerLetter = letter.lower()
@@ -7,9 +17,38 @@ def convertColumnInput(letter: str):
     else:
         return False
 
-def checkGridForEnd(grid, players):
+def rowWinCheck(grid, players):
+    for row in grid:
+        playerCounter = ""
+        samePlayerCount = 0 #Count consecutive spaces of the same player
+        for space in row:
+            if samePlayerCount == 0:
+                playerCounter = space
+                samePlayerCount += 1
+            elif samePlayerCount >= 4:
+                return playerCounter
+            elif space == playerCounter:
+                samePlayerCount += 1
+    return False
+
+def columnWinCheck(grid):
+    return
+
+def checkIfGridFull(grid):
     numberOfBlankSpaces = 0 #Count number of blank spaces so we can see if the grid is full
+    for row in grid:
+        for space in row:
+            if space == "X":
+                numberOfBlankSpaces += 1
+    if numberOfBlankSpaces == 0:
+        return True
+
+def endCheck(grid, players):
+    winner = False
+    #Row check
+    rowCheck = rowWinCheck(grid, players)
     
+    return winner
 
 def dropInGrid(grid, column, player):
     if len(grid[0]) >= column:
@@ -46,8 +85,10 @@ def playGame():
         ["X", "X", "X", "X", "X", "X", "X"],
         ["X", "X", "X", "X", "X", "X", "X"],
     ]
+    grid, lengthOfGrid = generateEmptyGrid(7, 6)
     winner = False
-    while not winner: #Keep looping turns until a winner is decided
+    turn = 1
+    while lengthOfGrid > turn: #Keep looping turns until a winner is decided
         for i in range(0, len(players)):
             currentPlayer = players[i]
             print(f"Player {playerNames[i]}, it's your turn! ")
@@ -65,6 +106,7 @@ def playGame():
 
                     else:
                         print("You can't move there! ")
+    winCheck = endCheck(grid, players)
             
 
 sampleGrid = [
